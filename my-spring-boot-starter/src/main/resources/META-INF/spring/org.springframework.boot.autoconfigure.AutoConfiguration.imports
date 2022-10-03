@@ -1,0 +1,2 @@
+com.kyrielia.starter.root.BasePropertiesAutoConfiguration
+com.kyrielia.starter.root.JacksonAutoConfiguration

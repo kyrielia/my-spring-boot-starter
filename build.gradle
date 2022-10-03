@@ -1,0 +1,63 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.freefair.lombok' version '6.5.0.3'
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group 'com.kyrielia'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+allprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    bootJar {
+        enabled = false
+    }
+
+    task allDeps(type: DependencyReportTask) {}
+}
+
+subprojects { subproject ->
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'java-library'
+
+    dependencies {
+        api platform(SpringBootPlugin.BOM_COORDINATES)
+        api platform('software.amazon.awssdk:bom:2.15.0')
+    }
+
+    jar {
+        enabled = true
+    }
+
+    publishing {
+        publications {
+            "$subproject.name"(MavenPublication) {
+                artifactId subproject.name
+                from components.java
+            }
+        }
+        repositories {
+            mavenLocal()
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+wrapper {
+    gradleVersion = '7.5'
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'my-spring-boot-starter'
+
+include 'my-spring-boot-starter'
+include 'my-spring-boot-starter-s3'
+include 'my-spring-boot-starter-test'
