@@ -1,2 +1,3 @@
 com.kyrielia.starter.root.BasePropertiesAutoConfiguration
 com.kyrielia.starter.root.JacksonAutoConfiguration
+com.kyrielia.starter.root.OpenApiAutoConfiguration
