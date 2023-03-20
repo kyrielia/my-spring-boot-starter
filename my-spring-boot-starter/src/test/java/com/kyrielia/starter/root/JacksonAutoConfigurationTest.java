@@ -17,7 +17,7 @@ class JacksonAutoConfigurationTest {
   @Test
   void shouldAddObjectMapperBeanByDefault() {
     this.contextRunner.run(context -> {
-      var objectMapper = context.containsBean("objectMapper");
+      var objectMapper = context.getBean("objectMapper");
       assertThat(objectMapper).isInstanceOf(ObjectMapper.class);
     });
   }
