@@ -3,9 +3,8 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     id 'org.springframework.boot' version '3.4.0'
     id 'io.freefair.lombok' version '8.11'
+    id 'com.adarshr.test-logger' version '4.0.0'
     id 'java'
-    id 'java-library'
-    id 'maven-publish'
 }
 
 group 'com.kyrielia'
@@ -17,8 +16,6 @@ java {
 }
 
 allprojects {
-    apply plugin: 'java'
-
     repositories {
         mavenCentral()
     }
@@ -31,8 +28,12 @@ allprojects {
 }
 
 subprojects { subproject ->
-    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'maven-publish'
+
+    apply plugin: 'java'
     apply plugin: 'java-library'
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'com.adarshr.test-logger'
 
     dependencies {
         api platform(SpringBootPlugin.BOM_COORDINATES)
