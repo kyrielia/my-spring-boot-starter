@@ -50,6 +50,15 @@ subprojects { subproject ->
 
     publishing {
         repositories {
+            maven {
+                name = "github"
+                url = uri("https://maven.pkg.github.com/kyrielia/my-spring-boot-starter")
+                credentials {
+                    username = System.getenv("GITHUB_USERNAME")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+
             mavenLocal()
         }
 
