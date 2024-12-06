@@ -2,11 +2,11 @@ dependencies {
     api 'org.springframework.boot:spring-boot-starter-web'
     api 'org.springframework.boot:spring-boot-starter-actuator'
 
-    api 'org.springdoc:springdoc-openapi-ui:1.6.15'
+    api 'org.springdoc:springdoc-openapi-ui:1.8.0'
 
-    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'com.google.guava:guava:33.3.1-jre'
 
-    implementation platform('io.micrometer:micrometer-bom:1.9.3')
+    implementation platform('io.micrometer:micrometer-bom:1.14.1')
     implementation "io.micrometer:micrometer-core"
     implementation "io.micrometer:micrometer-registry-prometheus"
 
