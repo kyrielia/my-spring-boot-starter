@@ -3,3 +3,6 @@ rootProject.name = 'my-spring-boot-starter'
 include 'my-spring-boot-starter'
 include 'my-spring-boot-starter-s3'
 include 'my-spring-boot-starter-test'
+
+// The dependencies module always needs to be last due to how Gradle handles multimodule projects
+include 'my-spring-boot-starter-bom'

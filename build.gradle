@@ -30,29 +30,38 @@ allprojects {
 subprojects { subproject ->
     apply plugin: 'maven-publish'
 
-    apply plugin: 'java'
-    apply plugin: 'java-library'
-    apply plugin: 'io.freefair.lombok'
-    apply plugin: 'com.adarshr.test-logger'
+    if (subproject.name == 'my-spring-boot-starter-bom') {
+        apply plugin: 'java-platform'
+    } else {
+        apply plugin: 'io.freefair.lombok'
+        apply plugin: 'java'
+        apply plugin: 'java-library'
+        apply plugin: 'com.adarshr.test-logger'
+
+        jar {
+            enabled = true
+        }
+    }
 
     dependencies {
         api platform(SpringBootPlugin.BOM_COORDINATES)
         api platform('software.amazon.awssdk:bom:2.29.29')
     }
 
-    jar {
-        enabled = true
-    }
-
     publishing {
+        repositories {
+            mavenLocal()
+        }
+
         publications {
             "$subproject.name"(MavenPublication) {
                 artifactId subproject.name
-                from components.java
+                if ('my-spring-boot-starter-bom' == subproject.name) {
+                    from components.javaPlatform
+                } else {
+                    from components.java
+                }
             }
-        }
-        repositories {
-            mavenLocal()
         }
     }
 

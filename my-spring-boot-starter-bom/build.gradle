@@ -1,0 +1,9 @@
+javaPlatform.allowDependencies()
+
+dependencies {
+    constraints {
+        api project(":my-spring-boot-starter")
+        api project(":my-spring-boot-starter-s3")
+        api project(":my-spring-boot-starter-test")
+    }
+}
